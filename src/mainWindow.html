@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <title>Redact</title>
+</head>
+<body>
+    <div id="images"></div>
+    <canvas style="margin:0;padding:0;position:relative;left:50px;top:50px;" id="imgCanvas" width="0" height="0" onclick="draw(event)"></canvas>
+    <input type="file" id="upload-file" value="Upload Image">
+
+    <script type="text/javascript" charset="utf-8">
+
+        
+                
+        var canvas = document.getElementById("imgCanvas");
+        var context = canvas.getContext("2d");
+
+        let img = new Image();
+        let filename = '';
+
+        const uploadFile = document.getElementById('upload-file');
+
+        uploadFile.addEventListener('change', e => {
+            const file = document.getElementById('upload-file').files[0];
+
+            const reader = new FileReader();
+
+            if(file){
+                filename = file.name;
+                reader.readAsDataURL(file);
+            }
+
+            reader.addEventListener('load', () => {
+                img = new Image();
+                img.src = reader.result;
+                img.onload = function() {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    context.drawImage(img, 0, 0, canvas.width, canvas.height);
+                }
+                uploadFile.style.display = "none";
+            }, false);
+        });
+
+        function createImageOnCanvas(imageId) {
+            canvas.style.display = "block";
+            document.getElementById("images").style.overflowY = "hidden";
+            var img = new Image(300, 300);
+            img.src = document.getElementById(imageId).src;
+            context.drawImage(img, (0), (0)); //onload....
+        }
+
+        function draw(e) {
+            var pos = getMousePos(canvas, e);
+            posx = pos.x;
+            posy = pos.y;
+            context.fillStyle = "#000000";
+            context.beginPath();
+            context.arc(posx, posy, 50, 0, 2*Math.PI);
+            context.fill();
+        }
+
+        function getMousePos(canvas, evt) {
+            var rect = canvas.getBoundingClientRect();
+            return {
+            x: evt.clientX - rect.left,
+            y: evt.clientY - rect.top
+            };
+        }
+
+        window.draw = draw;
+    </script>
+</body>
+</html>

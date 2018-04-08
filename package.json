@@ -1,0 +1,22 @@
+{
+  "name": "redact",
+  "version": "1.0.0",
+  "description": "Easily redact sensitive data in images",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/r-dog/redact.git"
+  },
+  "author": "Jake Grogan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/r-dog/redact/issues"
+  },
+  "homepage": "https://github.com/r-dog/redact#readme",
+  "dependencies": {
+    "electron": "^1.8.4"
+  }
+}
