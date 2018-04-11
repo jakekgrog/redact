@@ -18,7 +18,7 @@ app.on('ready', function(){
         slashes: true
     }));
 
-    //mainWindow.webContents.toggleDevTools();
+    mainWindow.webContents.toggleDevTools();
 
     var menu = Menu.buildFromTemplate([
         {

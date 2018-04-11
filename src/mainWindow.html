@@ -9,6 +9,7 @@
     <canvas style="margin:auto;padding:0;position:relative;display:block;" id="imgCanvas" width="0" height="0" onclick="draw(event)"></canvas>
     
     <input type="file" id="upload-file" name="Upload Image" value="Upload Image">
+    <input type="button" value="Save Image" onclick="download(event)">
 
     <script type="text/javascript" charset="utf-8">
 
@@ -19,9 +20,12 @@
 
         let img = new Image();
         let filename = '';
+        
         let drawing = false;
+        
         let startx = 0;
         let starty = 0;
+        
         let endx = 0;
         let endy = 0;
 
@@ -86,7 +90,29 @@
             };
         }
 
+        function download(e){
+            const fileExtension = filename.slice(-4);
+
+            let newFileName;
+
+            if(fileExtension === '.jpg' || fileExtension === '.png'){
+                newFileName = filename.substring(0, filename.length - 4) + '-edited.jpg';
+            }
+
+            saveImage(newFileName);
+        }
+
         window.draw = draw;
+
+        function saveImage(filename){
+            const canvasBuffer = require('electron-canvas-to-buffer');
+            const fs = require('fs');
+            var buffer = canvasBuffer(canvas, 'image/png');
+            console.log(buffer);
+            fs.writeFileSync(filename, buffer, function (err) {
+                throw err;
+            });
+        }
     </script>
 </body>
 </html>
