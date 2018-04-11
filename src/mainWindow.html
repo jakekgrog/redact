@@ -6,8 +6,9 @@
 </head>
 <body>
     <div id="images"></div>
-    <canvas style="margin:0;padding:0;position:relative;left:50px;top:50px;" id="imgCanvas" width="0" height="0" onclick="draw(event)"></canvas>
-    <input type="file" id="upload-file" value="Upload Image">
+    <canvas style="margin:auto;padding:0;position:relative;display:block;" id="imgCanvas" width="0" height="0" onclick="draw(event)"></canvas>
+    
+    <input type="file" id="upload-file" name="Upload Image" value="Upload Image">
 
     <script type="text/javascript" charset="utf-8">
 
@@ -18,6 +19,11 @@
 
         let img = new Image();
         let filename = '';
+        let drawing = false;
+        let startx = 0;
+        let starty = 0;
+        let endx = 0;
+        let endy = 0;
 
         const uploadFile = document.getElementById('upload-file');
 
@@ -50,15 +56,26 @@
             img.src = document.getElementById(imageId).src;
             context.drawImage(img, (0), (0)); //onload....
         }
-
+        
         function draw(e) {
-            var pos = getMousePos(canvas, e);
-            posx = pos.x;
-            posy = pos.y;
-            context.fillStyle = "#000000";
-            context.beginPath();
-            context.arc(posx, posy, 50, 0, 2*Math.PI);
-            context.fill();
+            if(drawing == false){
+                var pos = getMousePos(canvas, e);
+                startx = pos.x;
+                starty = pos.y;
+                drawing = true;
+            } else {
+                var posend = getMousePos(canvas, e);
+                endx = posend.x;
+                endy = posend.y;
+                context.fillStyle = "#0000000";
+                context.beginPath();
+                context.moveTo(startx, starty);
+                context.lineTo(endx, endy);
+                context.lineWidth = 13;
+                context.stroke();
+                drawing = false;
+            }
+            
         }
 
         function getMousePos(canvas, evt) {
