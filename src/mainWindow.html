@@ -5,11 +5,20 @@
     <title>Redact</title>
 </head>
 <body>
-    <div id="images"></div>
-    <canvas style="margin:auto;padding:0;position:relative;display:block;" id="imgCanvas" width="0" height="0" onclick="draw(event)"></canvas>
+
+    <div class="sidenav">
+        <button onclick="clearCanvas(event)">New</button>
+        <hr>
+        <button onclick="download(event)">Save</button>
+    </div>
+
+    <div class="main">
+        <canvas style="margin:auto;padding:0;position:relative;display:block;" id="imgCanvas" width="0" height="0" onclick="draw(event)"></canvas>
+
+        <input type="file" id="upload-file" name="Upload Image" value="Upload Image">
+    </div>
+
     
-    <input type="file" id="upload-file" name="Upload Image" value="Upload Image">
-    <input type="button" value="Save Image" onclick="download(event)" id="save">
 
     <script type="text/javascript" charset="utf-8">
 
@@ -29,7 +38,6 @@
         let endx = 0;
         let endy = 0;
 
-        document.getElementById("save").style.visibility = "hidden";
 
         const uploadFile = document.getElementById('upload-file');
 
@@ -51,8 +59,7 @@
                     canvas.height = img.height;
                     context.drawImage(img, 0, 0, canvas.width, canvas.height);
                 }
-                uploadFile.style.display = "none";
-                document.getElementById("save").style.visibility = "visible";
+                uploadFile.style.visibility = "hidden";
             }, false);
         });
 
@@ -115,6 +122,13 @@
             fs.writeFileSync(filename, buffer, function (err) {
                 throw err;
             });
+        }
+
+        function clearCanvas(e){
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            canvas.width = 0;
+            canvas.height = 0;
+            uploadFile.style.visibility = "visible";
         }
     </script>
 </body>

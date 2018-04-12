@@ -10,7 +10,7 @@ let mainWindow;
 // Listen for app to be ready
 app.on('ready', function(){
     //Create new window
-    mainWindow = new BrowserWindow({});
+    mainWindow = new BrowserWindow({width: 1200, height: 600});
     // Load html into window
     mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, "src/mainWindow.html"),
@@ -18,7 +18,7 @@ app.on('ready', function(){
         slashes: true
     }));
 
-    mainWindow.webContents.toggleDevTools();
+    //mainWindow.webContents.toggleDevTools();
 
     var menu = Menu.buildFromTemplate([
         {
