@@ -39,6 +39,7 @@ app.on('ready', function(){
                     label: 'View Source',
                     click() {
                         shell.openExternal("https://www.github.com/r-dog/redact");
+                        
                     }
                 }
             ]
