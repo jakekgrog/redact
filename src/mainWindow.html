@@ -18,11 +18,7 @@
         <input type="file" id="upload-file" name="Upload Image" value="Upload Image">
     </div>
 
-    
-
     <script type="text/javascript" charset="utf-8">
-
-        
                 
         var canvas = document.getElementById("imgCanvas");
         var context = canvas.getContext("2d");
@@ -37,7 +33,6 @@
         
         let endx = 0;
         let endy = 0;
-
 
         const uploadFile = document.getElementById('upload-file');
 
@@ -68,7 +63,7 @@
             document.getElementById("images").style.overflowY = "hidden";
             var img = new Image(300, 300);
             img.src = document.getElementById(imageId).src;
-            context.drawImage(img, (0), (0)); //onload....
+            context.drawImage(img, (0), (0));
         }
         
         function draw(e) {
