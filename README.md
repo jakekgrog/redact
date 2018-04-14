@@ -3,3 +3,25 @@
 # Redact - Easily redact sensitive data in images
 
 ![alt text](https://raw.githubusercontent.com/r-dog/redact/master/example.png)
+
+
+## Installation
+
+Clone this repository:
+
+```
+$ git clone https://github.com/r-dog/redact
+```
+
+Next, cd into the directory and run:
+```
+$ npm install
+```
+
+To start run:
+
+```
+$ npm start
+```
+
+
