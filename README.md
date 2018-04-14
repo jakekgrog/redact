@@ -15,6 +15,7 @@ $ git clone https://github.com/r-dog/redact
 
 Next, cd into the directory and run:
 ```
+$ cd redact
 $ npm install
 ```
 
