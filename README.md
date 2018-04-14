@@ -13,7 +13,7 @@ Clone this repository:
 $ git clone https://github.com/r-dog/redact
 ```
 
-Next, cd into the directory and run:
+Next, cd into the directory and install dependencies:
 ```
 $ cd redact
 $ npm install
