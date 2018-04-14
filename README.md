@@ -2,4 +2,4 @@
 
 # Redact - Easily redact sensitive data in images
 
-![alt text](https://raw.githubusercontent.com/r-dog/projectname/master/example.png)
+![alt text](https://raw.githubusercontent.com/r-dog/redact/master/example.png)
