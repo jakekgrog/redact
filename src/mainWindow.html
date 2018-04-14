@@ -14,7 +14,8 @@
     <div class="main">
         <canvas style="margin:auto;padding:0;position:relative;display:block;" id="imgCanvas" width="0" height="0" onclick="draw(event)"></canvas>
 
-        <input type="file" id="upload-file" name="Upload Image" value="Upload Image">
+        <input type="file" id="upload-file" class="inputfile" name="upload-file" value="Upload Image">
+        <label for="upload-file" id="label">Choose an image...</label>
     </div>
 
     <script type="text/javascript" charset="utf-8">
@@ -38,6 +39,8 @@
 
         const uploadFile = document.getElementById('upload-file');
 
+        const label = document.getElementById("label");
+
         uploadFile.addEventListener('change', e => {
             const file = document.getElementById('upload-file').files[0];
             
@@ -57,12 +60,12 @@
                     context.drawImage(img, 0, 0, canvas.width, canvas.height);
                 }
                 uploadFile.style.visibility = "hidden";
+                label.style.visibility = "hidden";
             }, false);
         });
 
         function createImageOnCanvas(imageId) {
             canvas.style.display = "block";
-            document.getElementById("images").style.overflowY = "hidden";
             var img = new Image(300, 300);
             img.src = document.getElementById(imageId).src;
             context.drawImage(img, (0), (0));
@@ -127,6 +130,7 @@
             canvas.width = 0;
             canvas.height = 0;
             uploadFile.style.visibility = "visible";
+            label.style.visibility = "visible";
         }
 
         function notify(){
