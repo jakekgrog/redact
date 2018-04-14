@@ -8,7 +8,6 @@
 
     <div class="sidenav">
         <button onclick="clearCanvas(event)">New</button>
-        <hr>
         <button onclick="download(event)">Save</button>
     </div>
 
@@ -19,7 +18,10 @@
     </div>
 
     <script type="text/javascript" charset="utf-8">
-                
+
+        const notifier = require('node-notifier');
+        const path = require('path');
+
         var canvas = document.getElementById("imgCanvas");
         var context = canvas.getContext("2d");
 
@@ -38,7 +40,7 @@
 
         uploadFile.addEventListener('change', e => {
             const file = document.getElementById('upload-file').files[0];
-
+            
             const reader = new FileReader();
 
             if(file){
@@ -117,6 +119,7 @@
             fs.writeFileSync(filename, buffer, function (err) {
                 throw err;
             });
+            notify();
         }
 
         function clearCanvas(e){
@@ -124,6 +127,17 @@
             canvas.width = 0;
             canvas.height = 0;
             uploadFile.style.visibility = "visible";
+        }
+
+        function notify(){
+            notifier.notify({
+                title: "Redact - Image Saved",
+                message: "Your image has been saved!",
+                icon: path.join(__dirname, "../assets/images/redact.png"),
+                sound: true,
+            }, function(err, response){
+                
+            });
         }
     </script>
 </body>
